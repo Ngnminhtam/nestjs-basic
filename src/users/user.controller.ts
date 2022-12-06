@@ -8,7 +8,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post()
   createUser(@Body() user: UserDto): UserDto {
-    console.log(user);
     return plainToInstance(UserDto, this.userService.create(user));
   }
 
