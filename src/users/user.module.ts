@@ -3,7 +3,12 @@ import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UsersMockService } from './user-mock.serviec';
 import { StoreConfig } from 'src/store/store.config';
+import { StoreService } from './store.service';
 
+function createStore(config: StoreConfig): StoreService {
+  console.log(config);
+  return new StoreService();
+}
 @Module({
   controllers: [UserController],
 
@@ -18,7 +23,7 @@ import { StoreConfig } from 'src/store/store.config';
   //   },
   // ],
 
-  // Custom Provider useValue
+  // Custom Provider useValue and Factory
 
   // providers: [
   //   UserService,
@@ -28,6 +33,16 @@ import { StoreConfig } from 'src/store/store.config';
   //       dir: 'store',
   //       path: 'user',
   //     } as StoreConfig,
+  //   },
+  //   {
+  //     provide: 'STORE_SERVICE',
+  //     useFactory: createStore,
+  //     inject: [
+  //       {
+  //         token: 'STORE_CONFIG',
+  //         optional: true,
+  //       },
+  //     ],
   //   },
   // ],
 })
