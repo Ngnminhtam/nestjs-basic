@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { UserDto } from 'src/user.dto';
+import { UserDto } from 'src/users/user.dto';
 
 @Injectable()
 export class UserService {
-  createUser(user: any): any {
-    user.createdAt = new Date();
-    user.id = 1;
-    user.updatedAt = new Date();
-    console.log(user);
-    return UserDto.plainToClass(user);
+  create(user: UserDto): UserDto {
+    // todo something insert to database
+    return user;
   }
 }
